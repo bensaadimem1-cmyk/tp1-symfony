@@ -1,0 +1,44 @@
+```twig
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles</h1>
+
+    {% if articles is empty %}
+        <p>Aucun article disponible.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ article.titre }}</td>
+                        <td>{{ article.auteur }}</td>
+                        <td>
+                            {% if article.publie %}
+                                Publié
+                            {% else %}
+                                Brouillon
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>Total : {{ articles|length }} article(s)</p>
+    {% endif %}
+{% endblock %}
+```
+
