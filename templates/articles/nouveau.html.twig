@@ -8,10 +8,11 @@
             <h1 class="mb-4">📝 Créer un nouvel article</h1>
 
             {{ form_start(formulaire) }}
+                {{ form_errors(formulaire) }}
                 <div class="mb-3">{{ form_row(formulaire.titre) }}</div>
                 <div class="mb-3">{{ form_row(formulaire.contenu) }}</div>
                 <div class="mb-3">{{ form_row(formulaire.auteur) }}</div>
-                <div class="mb-3">{{ form_row(formulaire.dateCreation) }}</div>
+                <div class="mb-3">{{ form_row(formulaire.categorie) }}</div>
                 <div class="mb-3">{{ form_row(formulaire.publie) }}</div>
                 {{ form_row(formulaire.enregistrer) }}
             {{ form_end(formulaire) }}

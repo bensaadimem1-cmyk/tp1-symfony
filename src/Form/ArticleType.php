@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType
 {
@@ -50,6 +52,14 @@ class ArticleType extends AbstractType
                 'attr' => ['class' => 'form-check-input'],
                 'label_attr' => ['class' => 'form-check-label'],
                 'row_attr' => ['class' => 'form-check mb-3'],
+            ])
+                        ->add('categorie', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'nom',
+                'label' => 'Catégorie',
+                'placeholder' => '-- Choisir une catégorie --',
+                'required' => false,
+                'attr' => ['class' => 'form-select'],
             ])
             ->add('enregistrer', SubmitType::class, [
                 'label' => '💾 Enregistrer',
