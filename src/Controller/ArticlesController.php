@@ -10,14 +10,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\CategorieRepository;
 
 class ArticlesController extends AbstractController
 {
-    #[Route('/articles/nouveau', name: 'app_article_nouveau')]
-    public function nouveau(Request $request, EntityManagerInterface $em): Response
+        #[Route('/articles/nouveau', name: 'app_article_nouveau')]
+    public function nouveau(Request $request, EntityManagerInterface $em, CategorieRepository $categorieRepository): Response
     {
         $article = new Article();
         $article->setDateCreation(new \DateTime());
+
+        // Bonus : catégorie présélectionnée via ?categorie=ID
+        $categorieId = $request->query->getInt('categorie');
+        if ($categorieId) {
+            $article->setCategorie($categorieRepository->find($categorieId));
+        }
 
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
