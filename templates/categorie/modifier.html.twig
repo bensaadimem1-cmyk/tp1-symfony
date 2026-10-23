@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier : {{ categorie.nom }}{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="mb-4">✏️ Modifier la catégorie</h1>
+
+            {{ form_start(formulaire) }}
+                {{ form_errors(formulaire) }}
+                <div class="mb-3">{{ form_row(formulaire.nom) }}</div>
+                <div class="mb-3">{{ form_row(formulaire.description) }}</div>
+                {{ form_row(formulaire.enregistrer) }}
+            {{ form_end(formulaire) }}
+
+            <a href="{{ path('app_categorie_detail', {id: categorie.id}) }}" class="btn btn-link mt-3 text-muted">← Annuler</a>
+        </div>
+    </div>
+{% endblock %}
