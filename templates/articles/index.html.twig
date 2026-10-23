@@ -19,6 +19,7 @@
                     <th>Auteur</th>
                     <th>Date</th>
                     <th>Statut</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,10 @@
                             {% else %}
                                 <span class="badge bg-warning text-dark">Brouillon</span>
                             {% endif %}
+                        </td>
+                            <td class="text-center">
+                            <a href="{{ path('app_article_detail', {id: article.id}) }}" class="btn btn-outline-primary btn-sm">👁️ Voir</a>
+                            <a href="{{ path('app_article_modifier', {id: article.id}) }}" class="btn btn-outline-secondary btn-sm">✏️</a>
                         </td>
                     </tr>
                 {% endfor %}
